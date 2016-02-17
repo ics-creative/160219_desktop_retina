@@ -1,0 +1,21 @@
+html, body, main {
+  height: 100%; }
+
+html, body {
+  overflow: hidden; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+section {
+  width: 400px;
+  height: 420px; }
+  section h1 {
+    color: #2c547a;
+    height: 20px;
+    text-align: center;
+    font-weight: normal; }
+
+/*# sourceMappingURL=index.css.map */
