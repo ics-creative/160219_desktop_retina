@@ -5,6 +5,9 @@ html, body {
   overflow: hidden; }
 
 body {
+  color: #1b1b1b;
+  font-family: "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
+  font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -17,5 +20,11 @@ section {
     height: 20px;
     text-align: center;
     font-weight: normal; }
+
+nav {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 0.9rem; }
 
 /*# sourceMappingURL=index.css.map */

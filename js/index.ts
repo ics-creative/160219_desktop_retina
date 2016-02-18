@@ -8,6 +8,9 @@ function init():void {
 	this.setImage("images/cat.png", "myCanvas");
 	// <canvas>要素の高解像度対応あり。2倍の画像を準備する。
 	this.setImage("images/cat_retina.png", "myRetinaCanvas", true);
+
+	// デバイスピクセル比表示の為の処理。canvas表示とは無関係。
+	document.getElementById("devicePixelRatioInfo").innerText = "devicePixelRatio:" + (window.devicePixelRatio ? String(window.devicePixelRatio) : "1");
 }
 
 /**
