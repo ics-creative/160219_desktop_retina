@@ -35,10 +35,10 @@ function catImageLoadedHandler(event, targetCanvasID, isRetina) {
     var image = event.target;
     // 高解像度対応の処理
     if (isRetina) {
-        // canvas要素のwidth属性とheight属性をwindow.devicePixelRatio分だけ拡大する。
+        // 1. canvas要素のwidth属性とheight属性をwindow.devicePixelRatio分だけ拡大する。
         myCanvas.width *= window.devicePixelRatio;
         myCanvas.height *= window.devicePixelRatio;
-        // canvas要素のstyle属性のwidthとheightをheight属性をwindow.devicePixelRatio分だけ縮小する。
+        // 2. canvas要素のstyle属性のwidthとheightをwindow.devicePixelRatio分だけ縮小する。
         myCanvas.style.width = String(myCanvas.width / window.devicePixelRatio) + "px";
         myCanvas.style.height = String(myCanvas.height / window.devicePixelRatio) + "px";
     }
