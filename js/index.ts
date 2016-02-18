@@ -11,7 +11,7 @@ function init():void {
 	this.setImage("images/cat_retina.png", "myRetinaCanvas", true);
 
 	// デバイスピクセル比表示の為の処理。canvas表示とは無関係。
-	document.getElementById("devicePixelRatioInfo").innerText = "devicePixelRatio:" + (window.devicePixelRatio ? String(window.devicePixelRatio) : "1");
+	document.getElementById("devicePixelRatioInfo").innerText = "devicePixelRatio:" + (devicePixelRatio ? String(devicePixelRatio) : "1");
 }
 
 /**
@@ -38,13 +38,13 @@ function catImageLoadedHandler(event:Event, targetCanvasID:string, isRetina:bool
 
 	// 高解像度対応の処理
 	if (isRetina) {
-		// 1. canvas要素のwidth属性とheight属性をwindow.devicePixelRatio分だけ拡大する。
-		myCanvas.width *= window.devicePixelRatio;
-		myCanvas.height *= window.devicePixelRatio;
+		// 1. canvas要素のwidth属性とheight属性をdevicePixelRatio分だけ拡大する。
+		myCanvas.width *= devicePixelRatio;
+		myCanvas.height *= devicePixelRatio;
 
-		// 2. canvas要素のstyle属性のwidthとheightをwindow.devicePixelRatio分だけ縮小する。
-		myCanvas.style.width = String(myCanvas.width / window.devicePixelRatio) + "px";
-		myCanvas.style.height = String(myCanvas.height / window.devicePixelRatio) + "px";
+		// 2. canvas要素のstyle属性のwidthとheightをdevicePixelRatio分だけ縮小する。
+		myCanvas.style.width = String(myCanvas.width / devicePixelRatio) + "px";
+		myCanvas.style.height = String(myCanvas.height / devicePixelRatio) + "px";
 	}
 
 	var ctx = myCanvas.getContext('2d');
