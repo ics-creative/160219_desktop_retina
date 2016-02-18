@@ -6,13 +6,13 @@ window.addEventListener("load", function () { return _this.init(); });
 function init() {
     // <canvas>要素の高解像度対応なし
     this.setImage("images/cat.png", "myCanvas");
-    // <canvas>要素の高解像度対応あり。2倍の画像を準備する。
+    // canvas要素の高解像度対応。高解像度の画像を表示する（今回は800×800pxの画像）。
     this.setImage("images/cat_retina.png", "myRetinaCanvas", true);
     // デバイスピクセル比表示の為の処理。canvas表示とは無関係。
     document.getElementById("devicePixelRatioInfo").innerText = "devicePixelRatio:" + (window.devicePixelRatio ? String(window.devicePixelRatio) : "1");
 }
 /**
- * 画像をcanva要素に表示する処理
+ * 画像をcanvas要素に表示する処理
  * @param imgSrc 画像のパス
  * @param targetCanvasID 画像を表示するcanvas要素のID
  * @param isRetina 高解像度対応をするかどうか
@@ -25,7 +25,6 @@ function setImage(imgSrc, targetCanvasID, isRetina) {
     catImage.addEventListener("load", function (event) { return _this.catImageLoadedHandler(event, targetCanvasID, isRetina); });
 }
 /**
- *
  * 画像の読み込みが完了した時に実行される処理
  * @param event 読み込み完了イベント。event.targetで画像にアクセスできる
  * @param targetCanvasID 画像を表示するcanvas要素のID
@@ -33,12 +32,18 @@ function setImage(imgSrc, targetCanvasID, isRetina) {
  */
 function catImageLoadedHandler(event, targetCanvasID, isRetina) {
     var myCanvas = document.getElementById(targetCanvasID);
-    var ctx = myCanvas.getContext('2d');
-    ctx.drawImage(event.target, 0, 0);
-    // 高解像度対応の場合は、あらかじめ2倍の大きさで作ったcanvas要素を、スタイル設定で半分の幅と高さにする。
+    var image = event.target;
+    // 高解像度対応の処理
     if (isRetina) {
-        myCanvas.style.width = String(myCanvas.width / 2) + "px";
-        myCanvas.style.height = String(myCanvas.height / 2) + "px";
+        // canvas要素のwidth属性とheight属性をwindow.devicePixelRatio分だけ拡大する。
+        myCanvas.width *= window.devicePixelRatio;
+        myCanvas.height *= window.devicePixelRatio;
+        // canvas要素のstyle属性のwidthとheightをheight属性をwindow.devicePixelRatio分だけ縮小する。
+        myCanvas.style.width = String(myCanvas.width / window.devicePixelRatio) + "px";
+        myCanvas.style.height = String(myCanvas.height / window.devicePixelRatio) + "px";
     }
+    var ctx = myCanvas.getContext('2d');
+    // canvas要素全体に画像を描画する。
+    ctx.drawImage(image, 0, 0, myCanvas.width, myCanvas.height);
 }
 //# sourceMappingURL=index.js.map
