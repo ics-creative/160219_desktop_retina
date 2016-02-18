@@ -28,7 +28,7 @@ section {
 nav {
   position: absolute;
   left: 5px;
-  top: 5px;
+  bottom: 5px;
   font-size: 0.9rem; }
 
 /*# sourceMappingURL=index.css.map */
